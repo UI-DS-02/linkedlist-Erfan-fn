@@ -121,3 +121,77 @@ class DoublyLinkedList<E> {
             traverser = traverser.next;
         }
     }
+    public void add(int index, E element) {
+        int counter = -1;
+        Node<E> current = this.head;
+        Node<E> previous=this.head;
+
+        while (current != null) {
+            counter++;
+
+            if (index == 0) {
+                Node<E> newNode = new Node<>(element);
+
+                newNode.next = head;
+                newNode.previous=null;
+                head.previous = newNode;
+                head = newNode;
+                size++;
+                break;
+
+            } else if (index == counter) {
+                Node<E> newNode = new Node<>(element);
+                previous.next = newNode;
+                newNode.previous=previous;
+                newNode.next = current;
+                current.previous=newNode;
+                size++;
+                break;
+            }
+
+            previous = current;
+            current = current.next;
+        }
+
+        if (index==size)
+        {
+            Node<E> newNode = new Node<>(element);
+            tail.next=newNode;
+            newNode.previous=tail;
+            newNode.next=null;
+            tail=newNode;
+            size++;
+        }
+    }
+
+    //------------------------------------------------------------------
+
+    public E remove(int index) {
+        int counter = -1;
+        Node<E> current = this.head;
+        Node<E> previous = this.head;
+        Node<E> result = null;
+
+        while (current != null) {
+            counter++;
+
+            if (index == 0) {
+                result = head;
+                this.head.next = this.head;
+                head.previous = null;
+                size--;
+                break;
+            } else if (index == counter) {
+
+                result = current;
+                previous.next = current.next;
+                current = current.next;
+                current.previous = previous;
+                size--;
+                break;
+            }
+            previous = current;
+            current = current.next;
+        }
+        return result.element;
+    }
