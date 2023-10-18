@@ -195,3 +195,76 @@ class DoublyLinkedList<E> {
         }
         return result.element;
     }
+    //--------------get the i-th element of the list
+
+    public E get(int index) {
+        int counter = -1;
+        Node<E> current = this.head;
+        Node<E> result = null;
+
+        while (current != null) {
+            counter++;
+            if (index == counter) {
+
+                result = current;
+                break;
+            }
+            current = current.next;
+        }
+
+        return result.element;
+    }
+
+    //--------------
+    public String commandPerformer(DoublyLinkedList<Integer> linkedList, String command) {
+        String result = "";
+        String[] array = command.split(" ");
+        if (array[0].equals("size")) {
+            result = String.valueOf(linkedList.Size());
+        }
+        if (array[0].equals("isEmpty")) {
+            result = String.valueOf(linkedList.isEmpty());
+        }
+        if (array[0].equals("first")) {
+            result = String.valueOf(linkedList.first());
+        }
+        if (array[0].equals("addFirst")) {
+            linkedList.addFirst(Integer.parseInt(array[1]));
+        }
+        if (array[0].equals("addLast")) {
+            linkedList.addLast(Integer.parseInt(array[1]));
+        }
+        if (array[0].equals("remove")) {
+            result = String.valueOf(linkedList.remove(Integer.parseInt(array[1])));
+        }
+        if (array[0].equals("get")) {
+            try {
+                result = String.valueOf(linkedList.get(Integer.parseInt(array[1])));
+            } catch (NullPointerException e) {
+                result="";
+            }
+        }
+        if (array[0].equals("add")) {
+            linkedList.add(Integer.parseInt(array[1]), Integer.parseInt(array[2]));
+        }
+        if (array[0].equals("sort")) {
+            linkedList.sort(linkedList);
+        }
+        if (array[0].equals("removeFirst")) {
+            result = String.valueOf(linkedList.removeFirst());
+        }
+        if (array[0].equals("removeLast")) {
+            result = String.valueOf(linkedList.removeLast());
+        }
+        if (array[0].equals("last")) {
+            result = String.valueOf(linkedList.last());
+        }
+        if (array[0].equals("first")) {
+            result = String.valueOf(linkedList.first());
+        }
+
+
+        return result;
+    }
+
+}
