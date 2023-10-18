@@ -1,3 +1,24 @@
+import java.util.Objects;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt();
+        scanner.nextLine();
+        DoublyLinkedList<Integer> linkedList = new DoublyLinkedList<Integer>();
+
+        for (int i = 1; i <n; i++) {
+
+            String order = scanner.nextLine();
+            String result = linkedList.commandPerformer(linkedList, order);
+            if (!result.equals("")){System.out.println(result);}
+
+        }
+    }
+}
+
+
 //--------------DoublyLinkedList Implementation-----------------------------------
 
 class DoublyLinkedList<E> {
